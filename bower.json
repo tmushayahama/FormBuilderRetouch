@@ -1,51 +1,29 @@
 {
-  "name": "qf-retouchWebApp",
-  "description": "",
-  "main": "",
-  "authors": [
-    "tmushayahama <tmushayahama@gmail.com>"
-  ],
-  "license": "MIT",
-  "moduleType": [],
-  "homepage": "",
-  "ignore": [
-    "**/.*",
-    "node_modules",
-    "bower_components",
-    "test",
-    "tests"
-  ],
-  "dependencies": {
-    "ag-grid": "~2.3.5",
-    "angular-animate": "~1.4.8",
-    "angular-bootstrap": "~0.14.3",
-    "angular-cookies": "~1.4.8",
-    "angular-file-upload": "~2.1.4",
-    "angular-local-storage": "~0.2.3",
-    "angular-resource": "~1.4.8",
-    "angular-sanitize": "~1.4.8",
-    "angular-translate": "~2.8.1",
-    "angular-tree-control": "~0.2.21",
-    "angular-ui-grid": "~3.0.7",
-    "angular-ui-router": "~0.2.15",
-    "angular-xeditable": "~0.1.9",
-    "compass-breakpoint": "breakpoint-sass#~2.6.1",
-    "bootstrap": "3.3.1",
-    "jquery-ui": "~1.11.4",
-    "moment": "~2.10.6",
-    "ng-context-menu": "~1.0.2",
-    "ng-contextmenu": "~0.3.6",
-    "ng-file-upload": "~10.1.14",
-    "oclazyload": "~1.0.6",
-    "requirejs": "~2.1.20",
-    "satellizer": "~0.12.5",
-    "underscore": "~1.8.3"
-  },
-  "resolutions": {
-    "angular": ">1.2.0"
-  },
-  "devDependencies": {
-    "angular-gestures": "~0.3.1",
-    "angularjs-slider": "~2.4.0"
-  }
+ "name": "qf-form-builder",
+ "version": "0.0.1",
+ "main": [
+  "./dist/qf-form-builder.js",
+  "./dist/qf-form-builder-components.js"
+ ],
+ "description": "Quickforms drag and drop builder",
+ "keywords": [
+  "AngularJS",
+  "form"
+ ],
+ "license": "MIT",
+ "ignore": [
+  "**/.*",
+  "node_modules",
+  "bower_components",
+  "test"
+ ],
+ "dependencies": {
+  "angular": "1.5.0",
+  "angular-mocks": "1.5.0",
+  "angular-validator": ">=0.2.3",
+  "jquery": "~2.1.0"
+ },
+ "devDependencies": {
+  "bootstrap": "~3.3.6"
+ }
 }

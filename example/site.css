@@ -1,0 +1,30 @@
+body {
+ padding:10px
+}
+.footer {
+ height:50px
+}
+
+#main-container {
+ position: absolute;
+ top: 0;
+ right: 0;
+ bottom: 0;
+ left: 0;
+ background-color: #F2F2F2;
+ overflow-y: scroll;
+ overflow-x: hidden;
+ -webkit-overflow-scrolling: touch;
+}
+
+.qf-component-nav {
+ position: absolute;
+ top: 0;
+ left: 0;
+ bottom: 0;
+}
+
+.qf-flex-container {
+ display: flex;
+ flex-direction: column;
+}
