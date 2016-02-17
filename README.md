@@ -79,7 +79,7 @@ $builder.registerComponent = (name, component={}) ->
 >component.template
 ```html
 <div class="form-group">
-    <label for="{{name+index}}" class="col-md-4 control-label" ng-class="{'fb-required':required}">{{label}}</label>
+    <label for="{{name+index}}" class="col-md-4 control-label" ng-class="{'qf-required':required}">{{label}}</label>
     <div class="col-md-8">
         <input type="text" ng-model="inputText" validator-required="{{required}}" id="{{name+index}}" class="form-control" placeholder="{{placeholder}}"/>
         <p class='help-block'>{{description}}</p>
@@ -125,8 +125,8 @@ $builder.registerComponent = (name, component={}) ->
 >
 ```coffee
 ###
-builder mode: `fb-builder` you could drag and drop to build the form.
-form mode: `fb-form` this is the form for end-user to input value.
+builder mode: `qf-builder` you could drag and drop to build the form.
+form mode: `qf-form` this is the form for end-user to input value.
 Default is {default: []}
 ###
 $builder.forms =
@@ -182,13 +182,13 @@ $builder.removeFormObject = (name, index) =>
 
 
 ##builder.directive
-####fb-components
+####qf-components
 >
 ```coffee
 a = angular.module 'builder.directive', ['builder.provider', 'builder.controller', 'builder.drag', 'validator']
-fbComponents = ->
+qfComponents = ->
     ###
-    You could use `fb-components` to render the components view.
+    You could use `qf-components` to render the components view.
     ###
     restrict: 'A'
     template:
@@ -199,54 +199,54 @@ fbComponents = ->
             </li>
         </ul>
         <div class='form-horizontal'>
-            <div class='fb-component' ng-repeat="component in components"
-                fb-component="component"></div>
+            <div class='qf-component' ng-repeat="component in components"
+                qf-component="component"></div>
         </div>
         """
-    controller: 'fbComponentsController'
-a.directive 'fbComponents', fbComponents
+    controller: 'qfComponentsController'
+a.directive 'qfComponents', qfComponents
 ```
 
 >
 ```html
-<div fb-components></div>
+<div qf-components></div>
 ```
 
 
-####fb-builder
+####qf-builder
 >
 ```coffee
 a = angular.module 'builder.directive', ['builder.provider', 'builder.controller', 'builder.drag', 'validator']
-fbBuilder = ($injector) ->
+qfBuilder = ($injector) ->
     ###
-    You could use `fb-builder="formName"` to render the builder view.
+    You could use `qf-builder="formName"` to render the builder view.
     ###
     restrict: 'A'
     template:
         """
         <div class='form-horizontal'>
-            <div class='fb-form-object-editable' ng-repeat="object in formObjects"
-                fb-form-object-editable="object"></div>
+            <div class='qf-form-object-editable' ng-repeat="object in formObjects"
+                qf-form-object-editable="object"></div>
         </div>
         """
     link: (scope, element, attrs) ->
-fbBuilder.$inject = ['$injector']
-a.directive 'fbBuilder', fbBuilder
+qfBuilder.$inject = ['$injector']
+a.directive 'qfBuilder', qfBuilder
 ```
 
 >
 ```html
-<div fb-builder="default"></div>
+<div qf-builder="default"></div>
 ```
 
 
-####fb-form
+####qf-form
 >
 ```coffee
 a = angular.module 'builder.directive', ['builder.provider', 'builder.controller', 'builder.drag', 'validator']
-fbForm = ($injector) ->
+qfForm = ($injector) ->
     ###
-    You could use `fb-form="formName"` to render the form view for end-users.
+    You could use `qf-form="formName"` to render the form view for end-users.
     ###
     restrict: 'A'
     require: 'ngModel'  # form data (end-user input value)
@@ -255,19 +255,19 @@ fbForm = ($injector) ->
         input: '=ngModel'
     template:
         """
-        <div class='fb-form-object' ng-repeat="object in form" fb-form-object="object">
+        <div class='qf-form-object' ng-repeat="object in form" qf-form-object="object">
         </div>
         """
-    controller: 'fbFormController'
+    controller: 'qfFormController'
     link: (scope, element, attrs) ->
-fbForm.$inject = ['$injector']
-a.directive 'fbForm', fbForm
+qfForm.$inject = ['$injector']
+a.directive 'qfForm', qfForm
 ```
 
 >
 ```html
 <form class="form-horizontal">
-    <div ng-model="input" fb-form="default" fb-default="defaultValue"></div>
+    <div ng-model="input" qf-form="default" qf-default="defaultValue"></div>
     <div class="form-group">
         <div class="col-md-8 col-md-offset-4">
             <input type="submit" ng-click="submit()" class="btn btn-default"/>

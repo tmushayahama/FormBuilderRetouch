@@ -2,7 +2,7 @@ describe 'builder.controller', ->
     beforeEach module('builder')
 
 
-    describe 'fbFormObjectEditableController', ->
+    describe 'qfFormObjectEditableController', ->
         $scope = null
         controller = null
 
@@ -12,7 +12,7 @@ describe 'builder.controller', ->
                 popoverTemplate: "<div class='form-group'></div>"
 
             $scope = $rootScope.$new()
-            controller = $controller 'fbFormObjectEditableController',
+            controller = $controller 'qfFormObjectEditableController',
                 $scope: $scope
                 $injector: $injector
 
@@ -122,7 +122,7 @@ describe 'builder.controller', ->
                 expect(formObject.options.join('\n')).toEqual $scope.optionsText
 
 
-    describe 'fbComponentsController', ->
+    describe 'qfComponentsController', ->
         $scope = null
         controller = null
 
@@ -132,7 +132,7 @@ describe 'builder.controller', ->
                 popoverTemplate: "<div class='form-group'></div>"
 
             $scope = $rootScope.$new()
-            controller = $controller 'fbComponentsController',
+            controller = $controller 'qfComponentsController',
                 $scope: $scope
 
         describe '$scope.groups', ->
@@ -173,13 +173,13 @@ describe 'builder.controller', ->
                 expect($scope.components[0].name).toEqual 'xComponent'
 
 
-    describe 'fbComponentController', ->
+    describe 'qfComponentController', ->
         $scope = null
         controller = null
 
         beforeEach inject ($rootScope, $controller) ->
             $scope = $rootScope.$new()
-            controller = $controller 'fbComponentController',
+            controller = $controller 'qfComponentController',
                 $scope: $scope
 
         describe '$scope.copyObjectToScope()', ->
@@ -210,7 +210,7 @@ describe 'builder.controller', ->
                 expect(component.popoverTemplate).toEqual $scope.popoverTemplate
 
 
-    describe 'fbFormController', ->
+    describe 'qfFormController', ->
         $timeout = null
         $scope = null
         controller = null
@@ -218,7 +218,7 @@ describe 'builder.controller', ->
         beforeEach inject ($rootScope, $controller, $injector) ->
             $timeout = $injector.get '$timeout'
             $scope = $rootScope.$new()
-            controller = $controller 'fbFormController',
+            controller = $controller 'qfFormController',
                 $scope: $scope
                 $injector: $injector
 
@@ -237,13 +237,13 @@ describe 'builder.controller', ->
                 expect(spyBroadcast).toHaveBeenCalled()
 
 
-    describe 'fbFormObjectController', ->
+    describe 'qfFormObjectController', ->
         $scope = null
         controller = null
 
         beforeEach inject ($rootScope, $controller, $injector) ->
             $scope = $rootScope.$new()
-            controller = $controller 'fbFormObjectController',
+            controller = $controller 'qfFormObjectController',
                 $scope: $scope
                 $injector: $injector
 

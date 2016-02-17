@@ -18,15 +18,15 @@
  </head>
  <body ng-controller="DemoController">
   <div id="main-container">
-   <div class="qf-component-nav col-lg-4 col-md-4 col-sm-4 hidden-xs" role="navigation">
-    <div fb-components></div>
+   <div class="qf-component-nav col-lg-4 col-md-4 col-sm-4 col-xs-4" role="navigation">
+    <div qf-components></div>
    </div>
-   <div ui-view="apps" class="qf-flex-container col-lg-offset-4 col-md-offset-4 col-sm-offset-4 col-xs-offset-0 col-lg-11 col-md-10 col-sm-10 col-xs-12">
-    <div class="panel panel-default">
+   <div ui-view="apps" class="qf-flex-container col-lg-offset-4 col-md-offset-4 col-sm-offset-4 col-xs-offset-4 col-lg-8 col-md-8 col-sm-8 col-xs-8">
+    <div class="qf-container col-lg-8 col-md-10 col-sm-11 col-xs-11 panel panel-default">
      <div class="panel-heading">
       <h3 class="panel-title">Builder</h3>
      </div>
-     <div fb-builder="default"></div>
+     <div qf-builder="default"></div>
      <div class="panel-footer">
       <div class="checkbox">
        <label><input type="checkbox" ng-model="isShowScope" />
@@ -37,12 +37,11 @@
      </div>
     </div>
    </div>
-
    <div class="row">
     <h2>Form</h2>
     <hr/>
     <form class="form-horizontal">
-     <div ng-model="input" fb-form="default" fb-default="defaultValue"></div>
+     <div ng-model="input" qf-form="default" qf-default="defaultValue"></div>
      <div class="form-group">
       <div class="col-md-8 col-md-offset-4">
        <input type="submit" ng-click="submit()" class="btn btn-default"/>

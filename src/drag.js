@@ -180,7 +180,7 @@ angular.module('builder.drag', []).provider('$drag', function () {
     e.preventDefault();
     $clone = $element.clone();
     result.element = $clone[0];
-    $clone.addClass("fb-draggable form-horizontal prepare-dragging");
+    $clone.addClass("qf-draggable form-horizontal prepare-dragging");
     _this.hooks.move.drag = function (e, defer) {
      var droppable, id, ref, results;
      if ($clone.hasClass('prepare-dragging')) {
@@ -246,7 +246,7 @@ angular.module('builder.drag', []).provider('$drag', function () {
     element: $element[0],
     object: object
    };
-   $element.addClass('fb-draggable');
+   $element.addClass('qf-draggable');
    $element.on('mousedown', function (e) {
     e.preventDefault();
     if ($element.hasClass('dragging')) {

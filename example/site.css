@@ -28,3 +28,21 @@ body {
  display: flex;
  flex-direction: column;
 }
+
+
+.qf-container {
+ display: inline-block;
+ height: 100%;
+ margin: 0 auto;
+ padding-left: 15px;
+ padding-right: 15px;
+}
+
+.qf-container:before,
+.qf-container:after {
+ content: " ";
+ display: table;
+}
+.qf-container:after {
+ clear: both;
+}

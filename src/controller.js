@@ -14,7 +14,7 @@ copyObjectToScope = function (object, scope) {
  }
 };
 
-angular.module('builder.controller', ['builder.provider']).controller('fbFormObjectEditableController', [
+angular.module('builder.controller', ['builder.provider']).controller('qfFormObjectEditableController', [
  '$scope', '$injector', function ($scope, $injector) {
   var $builder;
   $builder = $injector.get('$builder');
@@ -90,7 +90,7 @@ angular.module('builder.controller', ['builder.provider']).controller('fbFormObj
    }
   };
  }
-]).controller('fbComponentsController', [
+]).controller('qfComponentsController', [
  '$scope', '$injector', function ($scope, $injector) {
   var $builder;
   $builder = $injector.get('$builder');
@@ -118,13 +118,13 @@ angular.module('builder.controller', ['builder.provider']).controller('fbFormObj
    return $scope.selectGroup(null, $scope.activeGroup);
   });
  }
-]).controller('fbComponentController', [
+]).controller('qfComponentController', [
  '$scope', function ($scope) {
   return $scope.copyObjectToScope = function (object) {
    return copyObjectToScope(object, $scope);
   };
  }
-]).controller('fbFormController', [
+]).controller('qfFormController', [
  '$scope', '$injector', function ($scope, $injector) {
   var $builder, $timeout;
   $builder = $injector.get('$builder');
@@ -141,7 +141,7 @@ angular.module('builder.controller', ['builder.provider']).controller('fbFormObj
    });
   }, true);
  }
-]).controller('fbFormObjectController', [
+]).controller('qfFormObjectController', [
  '$scope', '$injector', function ($scope, $injector) {
   var $builder;
   $builder = $injector.get('$builder');

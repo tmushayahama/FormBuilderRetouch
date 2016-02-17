@@ -14,7 +14,7 @@ copyObjectToScope = function (object, scope) {
  }
 };
 
-angular.module('builder.controller', ['builder.provider']).controller('fbFormObjectEditableController', [
+angular.module('builder.controller', ['builder.provider']).controller('qfFormObjectEditableController', [
  '$scope', '$injector', function ($scope, $injector) {
   var $builder;
   $builder = $injector.get('$builder');
@@ -90,7 +90,7 @@ angular.module('builder.controller', ['builder.provider']).controller('fbFormObj
    }
   };
  }
-]).controller('fbComponentsController', [
+]).controller('qfComponentsController', [
  '$scope', '$injector', function ($scope, $injector) {
   var $builder;
   $builder = $injector.get('$builder');
@@ -118,13 +118,13 @@ angular.module('builder.controller', ['builder.provider']).controller('fbFormObj
    return $scope.selectGroup(null, $scope.activeGroup);
   });
  }
-]).controller('fbComponentController', [
+]).controller('qfComponentController', [
  '$scope', function ($scope) {
   return $scope.copyObjectToScope = function (object) {
    return copyObjectToScope(object, $scope);
   };
  }
-]).controller('fbFormController', [
+]).controller('qfFormController', [
  '$scope', '$injector', function ($scope, $injector) {
   var $builder, $timeout;
   $builder = $injector.get('$builder');
@@ -141,7 +141,7 @@ angular.module('builder.controller', ['builder.provider']).controller('fbFormObj
    });
   }, true);
  }
-]).controller('fbFormObjectController', [
+]).controller('qfFormObjectController', [
  '$scope', '$injector', function ($scope, $injector) {
   var $builder;
   $builder = $injector.get('$builder');
@@ -163,7 +163,7 @@ angular.module('builder.controller', ['builder.provider']).controller('fbFormObj
    return $scope.$parent.input.splice($scope.$index, 1, input);
   };
  }
-]);angular.module('builder.directive', ['builder.provider', 'builder.controller', 'builder.drag', 'validator']).directive('fbBuilder', [
+]);angular.module('builder.directive', ['builder.provider', 'builder.controller', 'builder.drag', 'validator']).directive('qfBuilder', [
  '$injector', function ($injector) {
   var $builder, $drag;
   $builder = $injector.get('$builder');
@@ -171,29 +171,29 @@ angular.module('builder.controller', ['builder.provider']).controller('fbFormObj
   return {
    restrict: 'A',
    scope: {
-    fbBuilder: '='
+    qfBuilder: '='
    },
-   template: "<div class='form-horizontal'>\n    <div class='fb-form-object-editable' ng-repeat=\"object in formObjects\"\n        fb-form-object-editable=\"object\"></div>\n</div>",
+   template: "<div class='form-horizontal'>\n    <div class='qf-form-object-editable' ng-repeat=\"object in formObjects\"\n        qf-form-object-editable=\"object\"></div>\n</div>",
    link: function (scope, element, attrs) {
     var base, beginMove, name;
-    scope.formName = attrs.fbBuilder;
+    scope.formName = attrs.qfBuilder;
     if ((base = $builder.forms)[name = scope.formName] == null) {
      base[name] = [];
     }
     scope.formObjects = $builder.forms[scope.formName];
     beginMove = true;
-    $(element).addClass('fb-builder');
+    $(element).addClass('qf-builder');
     return $drag.droppable($(element), {
      move: function (e) {
       var $empty, $formObject, $formObjects, height, i, index, j, offset, positions, ref, ref1;
       if (beginMove) {
-       $("div.fb-form-object-editable").popover('hide');
+       $("div.qf-form-object-editable").popover('hide');
        beginMove = false;
       }
-      $formObjects = $(element).find('.fb-form-object-editable:not(.empty,.dragging)');
+      $formObjects = $(element).find('.qf-form-object-editable:not(.empty,.dragging)');
       if ($formObjects.length === 0) {
-       if ($(element).find('.fb-form-object-editable.empty').length === 0) {
-        $(element).find('>div:first').append($("<div class='fb-form-object-editable empty'></div>"));
+       if ($(element).find('.qf-form-object-editable.empty').length === 0) {
+        $(element).find('>div:first').append($("<div class='qf-form-object-editable empty'></div>"));
        }
        return;
       }
@@ -209,7 +209,7 @@ angular.module('builder.controller', ['builder.provider']).controller('fbFormObj
       for (index = j = 1, ref1 = positions.length; j < ref1; index = j += 1) {
        if (e.pageY > positions[index - 1] && e.pageY <= positions[index]) {
         $(element).find('.empty').remove();
-        $empty = $("<div class='fb-form-object-editable empty'></div>");
+        $empty = $("<div class='qf-form-object-editable empty'></div>");
         if (index - 1 < $formObjects.length) {
          $empty.insertBefore($($formObjects[index - 1]));
         } else {
@@ -221,7 +221,7 @@ angular.module('builder.controller', ['builder.provider']).controller('fbFormObj
      },
      out: function () {
       if (beginMove) {
-       $("div.fb-form-object-editable").popover('hide');
+       $("div.qf-form-object-editable").popover('hide');
        beginMove = false;
       }
       return $(element).find('.empty').remove();
@@ -236,17 +236,17 @@ angular.module('builder.controller', ['builder.provider']).controller('fbFormObj
       if (!isHover && draggable.mode === 'drag') {
        formObject = draggable.object.formObject;
        if (formObject.editable) {
-        $builder.removeFormObject(attrs.fbBuilder, formObject.index);
+        $builder.removeFormObject(attrs.qfBuilder, formObject.index);
        }
       } else if (isHover) {
        if (draggable.mode === 'mirror') {
-        $builder.insertFormObject(scope.formName, $(element).find('.empty').index('.fb-form-object-editable'), {
+        $builder.insertFormObject(scope.formName, $(element).find('.empty').index('.qf-form-object-editable'), {
          component: draggable.object.componentName
         });
        }
        if (draggable.mode === 'drag') {
         oldIndex = draggable.object.formObject.index;
-        newIndex = $(element).find('.empty').index('.fb-form-object-editable');
+        newIndex = $(element).find('.empty').index('.qf-form-object-editable');
         if (oldIndex < newIndex) {
          newIndex--;
         }
@@ -259,7 +259,7 @@ angular.module('builder.controller', ['builder.provider']).controller('fbFormObj
    }
   };
  }
-]).directive('fbFormObjectEditable', [
+]).directive('qfFormObjectEditable', [
  '$injector', function ($injector) {
   var $builder, $compile, $drag, $validator;
   $builder = $injector.get('$builder');
@@ -268,9 +268,9 @@ angular.module('builder.controller', ['builder.provider']).controller('fbFormObj
   $validator = $injector.get('$validator');
   return {
    restrict: 'A',
-   controller: 'fbFormObjectEditableController',
+   controller: 'qfFormObjectEditableController',
    scope: {
-    formObject: '=fbFormObjectEditable'
+    formObject: '=qfFormObjectEditable'
    },
    link: function (scope, element) {
     var popover;
@@ -303,7 +303,7 @@ angular.module('builder.controller', ['builder.provider']).controller('fbFormObj
      }
      $(element).removeClass(popover.id);
      popover = {
-      id: "fb-" + (Math.random().toString().substr(2)),
+      id: "qf-" + (Math.random().toString().substr(2)),
       isClickedSave: false,
       view: null,
       html: template
@@ -365,7 +365,7 @@ angular.module('builder.controller', ['builder.provider']).controller('fbFormObj
      if ($drag.isMouseMoved()) {
       return false;
      }
-     $("div.fb-form-object-editable:not(." + popover.id + ")").popover('hide');
+     $("div.qf-form-object-editable:not(." + popover.id + ")").popover('hide');
      $popover = $("form." + popover.id).closest('.popover');
      if ($popover.length > 0) {
       elementOrigin = $(element).offset().top + $(element).height() / 2;
@@ -409,13 +409,13 @@ angular.module('builder.controller', ['builder.provider']).controller('fbFormObj
    }
   };
  }
-]).directive('fbComponents', function () {
+]).directive('qfComponents', function () {
  return {
   restrict: 'A',
-  template: "<ul ng-if=\"groups.length > 1\" class=\"nav nav-tabs nav-justified\">\n    <li ng-repeat=\"group in groups\" ng-class=\"{active:activeGroup==group}\">\n        <a href='#' ng-click=\"selectGroup($event, group)\">{{group}}</a>\n    </li>\n</ul>\n<div class='form-horizontal'>\n    <div class='fb-component' ng-repeat=\"component in components\"\n        fb-component=\"component\"></div>\n</div>",
-  controller: 'fbComponentsController'
+  template: "<ul ng-if=\"groups.length > 1\" class=\"nav nav-tabs nav-justified\">\n    <li ng-repeat=\"group in groups\" ng-class=\"{active:activeGroup==group}\">\n        <a href='#' ng-click=\"selectGroup($event, group)\">{{group}}</a>\n    </li>\n</ul>\n<div class='form-horizontal'>\n    <div class='qf-component' ng-repeat=\"component in components\"\n        qf-component=\"component\"></div>\n</div>",
+  controller: 'qfComponentsController'
  };
-}).directive('fbComponent', [
+}).directive('qfComponent', [
  '$injector', function ($injector) {
   var $builder, $compile, $drag;
   $builder = $injector.get('$builder');
@@ -424,9 +424,9 @@ angular.module('builder.controller', ['builder.provider']).controller('fbFormObj
   return {
    restrict: 'A',
    scope: {
-    component: '=fbComponent'
+    component: '=qfComponent'
    },
-   controller: 'fbComponentController',
+   controller: 'qfComponentController',
    link: function (scope, element) {
     scope.copyObjectToScope(scope.component);
     $drag.draggable($(element), {
@@ -447,18 +447,18 @@ angular.module('builder.controller', ['builder.provider']).controller('fbFormObj
    }
   };
  }
-]).directive('fbForm', [
+]).directive('qfForm', [
  '$injector', function ($injector) {
   return {
    restrict: 'A',
    require: 'ngModel',
    scope: {
-    formName: '@fbForm',
+    formName: '@qfForm',
     input: '=ngModel',
-    "default": '=fbDefault'
+    "default": '=qfDefault'
    },
-   template: "<div class='fb-form-object' ng-repeat=\"object in form\" fb-form-object=\"object\"></div>",
-   controller: 'fbFormController',
+   template: "<div class='qf-form-object' ng-repeat=\"object in form\" qf-form-object=\"object\"></div>",
+   controller: 'qfFormController',
    link: function (scope, element, attrs) {
     var $builder, base, name;
     $builder = $injector.get('$builder');
@@ -469,7 +469,7 @@ angular.module('builder.controller', ['builder.provider']).controller('fbFormObj
    }
   };
  }
-]).directive('fbFormObject', [
+]).directive('qfFormObject', [
  '$injector', function ($injector) {
   var $builder, $compile, $parse;
   $builder = $injector.get('$builder');
@@ -477,9 +477,9 @@ angular.module('builder.controller', ['builder.provider']).controller('fbFormObj
   $parse = $injector.get('$parse');
   return {
    restrict: 'A',
-   controller: 'fbFormObjectController',
+   controller: 'qfFormObjectController',
    link: function (scope, element, attrs) {
-    scope.formObject = $parse(attrs.fbFormObject)(scope);
+    scope.formObject = $parse(attrs.qfFormObject)(scope);
     scope.$component = $builder.components[scope.formObject.component];
     scope.$on($builder.broadcastChannel.updateInput, function () {
      return scope.updateInput(scope.inputText);
@@ -503,7 +503,7 @@ angular.module('builder.controller', ['builder.provider']).controller('fbFormObj
     scope.$watch('inputText', function () {
      return scope.updateInput(scope.inputText);
     });
-    scope.$watch(attrs.fbFormObject, function () {
+    scope.$watch(attrs.qfFormObject, function () {
      return scope.copyObjectToScope(scope.formObject);
     }, true);
     scope.$watch('$component.template', function (template) {
@@ -720,7 +720,7 @@ angular.module('builder.drag', []).provider('$drag', function () {
     e.preventDefault();
     $clone = $element.clone();
     result.element = $clone[0];
-    $clone.addClass("fb-draggable form-horizontal prepare-dragging");
+    $clone.addClass("qf-draggable form-horizontal prepare-dragging");
     _this.hooks.move.drag = function (e, defer) {
      var droppable, id, ref, results;
      if ($clone.hasClass('prepare-dragging')) {
@@ -786,7 +786,7 @@ angular.module('builder.drag', []).provider('$drag', function () {
     element: $element[0],
     object: object
    };
-   $element.addClass('fb-draggable');
+   $element.addClass('qf-draggable');
    $element.on('mousedown', function (e) {
     e.preventDefault();
     if ($element.hasClass('dragging')) {

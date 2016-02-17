@@ -2,7 +2,7 @@
 @import "compass/css3";
 
 
-.fb-component {
+.qf-component {
     padding: 10px;
     cursor: move;
     input { cursor: move; }
@@ -10,17 +10,17 @@
     select { cursor: move; }
     textarea { cursor: move; }
 }
-.fb-form-object-editable {
+.qf-form-object-editable {
     padding: 10px;
 }
-.fb-form-object-editable.fb-draggable {
+.qf-form-object-editable.qf-draggable {
     cursor: move;
     input { cursor: move; }
     label { cursor: pointer; }
     select { cursor: move; }
     textarea { cursor: move; }
 }
-.fb-form-object-editable.empty {
+.qf-form-object-editable.empty {
     cursor: default;
     margin: 6px;
     height: 80px;
@@ -28,19 +28,19 @@
     background-color: #eee;
 }
 
-.fb-draggable.dragging {
+.qf-draggable.dragging {
     background-color: #ffffff;
     position: absolute;
     z-index: 800;
     @include box-shadow(#666 0 0 20px);
 }
 
-.fb-required:after {
+.qf-required:after {
     color: #b94a48;
     content: ' *';
 }
 
-.fb-builder {
+.qf-builder {
     min-height: 250px;
 }
 
