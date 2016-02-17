@@ -25,7 +25,7 @@ angular.module('builder.provider', []).provider('$builder', function () {
  $http = null;
  $templateCache = null;
  this.config = {
-  popoverPlacement: 'right'
+  popoverPlacement: 'bottom'
  };
  this.components = {};
  this.groups = [];
