@@ -173,7 +173,9 @@ angular.module('builder.controller', ['builder.provider']).controller('qfFormObj
    scope: {
     qfBuilder: '='
    },
-   template: "<div class='form-horizontal'>\n    <div class='qf-form-object-editable' ng-repeat=\"object in formObjects\"\n        qf-form-object-editable=\"object\"></div>\n</div>",
+   templateUrl: function (element, attrs) {
+    return attrs.templateUrl;
+   },
    link: function (scope, element, attrs) {
     var base, beginMove, name;
     scope.formName = attrs.qfBuilder;
@@ -274,6 +276,7 @@ angular.module('builder.controller', ['builder.provider']).controller('qfFormObj
    },
    link: function (scope, element) {
     var popover;
+    var settingContainer = $('.qf-properties');
     scope.inputArray = [];
     scope.$component = $builder.components[scope.formObject.component];
     scope.setupScope(scope.formObject);
@@ -302,13 +305,18 @@ angular.module('builder.controller', ['builder.provider']).controller('qfFormObj
       return;
      }
      $(element).removeClass(popover.id);
+
      popover = {
       id: "qf-" + (Math.random().toString().substr(2)),
       isClickedSave: false,
       view: null,
       html: template
      };
+
+
+
      popover.html = $(popover.html).addClass(popover.id);
+     settingContainer.html($(popover.html));
      popover.view = $compile(popover.html)(scope);
      $(element).addClass(popover.id);
      return $(element).popover({
@@ -412,7 +420,9 @@ angular.module('builder.controller', ['builder.provider']).controller('qfFormObj
 ]).directive('qfComponents', function () {
  return {
   restrict: 'A',
-  template: "<ul ng-if=\"groups.length > 1\" class=\"nav nav-tabs nav-justified\">\n    <li ng-repeat=\"group in groups\" ng-class=\"{active:activeGroup==group}\">\n        <a href='#' ng-click=\"selectGroup($event, group)\">{{group}}</a>\n    </li>\n</ul>\n<div class='form-horizontal'>\n    <div class='qf-component' ng-repeat=\"component in components\"\n        qf-component=\"component\"></div>\n</div>",
+  templateUrl: function (element, attrs) {
+   return attrs.templateUrl;
+  },
   controller: 'qfComponentsController'
  };
 }).directive('qfComponent', [

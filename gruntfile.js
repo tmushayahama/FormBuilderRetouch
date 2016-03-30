@@ -78,7 +78,7 @@ module.exports = function (grunt) {
   grunt.task.run("copy:" + "build_qfretouch");
  });
 
- grunt.registerTask('qf_build', ['concat', 'uglify']);
+ grunt.registerTask('qf_build', ['concat', 'uglify', 'qf_copy_to_lib']);
  grunt.registerTask('test', ['karma']);
  grunt.loadNpmTasks("grunt-contrib-concat");
  grunt.loadNpmTasks("grunt-contrib-copy");
